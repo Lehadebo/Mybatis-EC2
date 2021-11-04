@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="plantilla::head">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container" th:replace="plantilla::menu"></div>
+        <div class="container" style="max-width: 400px; margin-top: 50px">
+            <div class="card">
+                <div class="card-header">
+                    Modificar Libro
+                </div>
+                
+                <div class="card-body">
+                    <form action="/update" method="get">
+                         <div class="mb-3">
+                            <input type="text" class="form-control m-25" placeholder="Titulo de Libro" name="titulo" th:value="${lib.titulo}" >
+                        </div>
+                        <div class="mb-3">
+                            <select name="autor" id="autor" class="form-control" >
+                                <option value="0">Seleccionar Autor</option>                                
+                                <option th:each="aut : ${auts}" th:value="${aut.idautor}" th:text="${aut.nombre} +' '+${aut.apellido}"  th:selected="false"/>                              
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <select name="editorial" id="editorial" class="form-control" >
+                                <option value="0">Seleccionar Editorial</option>                                
+                                <option th:each="edt : ${edts}" th:value="${edt.ideditorial}" th:text="${edt.nombre}" th:selected="false"/>                              
+                            </select>
+                        </div>
+                       
+                       
+                        <input type="hidden" name="idlibro" th:value="${lib.idlibro}" />
+                        <input type="submit" class="btn btn-primary" value="Actualizar">
+                    </form>
+                </div>
+            </div>
+    </body>
+</html>
+
